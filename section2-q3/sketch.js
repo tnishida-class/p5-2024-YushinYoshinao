@@ -1,24 +1,26 @@
 // ダーツ
 
 function setup() {
-  // 色の定義
+  // ここで色の定義をしています。
   const green = color(0, 255, 0);   // 緑色
   const red = color(255, 0, 0);     // 赤色
   const black = color(0);           // 黒色
   const cream = color(242, 212, 147); // クリーム色
 
   // キャンバスの作成
-  createCanvas(400, 400);           // 400x400のキャンバスを作成
-  background(255);                  // 背景色を白に設定
-  stroke(255);                      // 線の色を白に設定（今回は使用しないがデフォルト）
-  strokeWeight(3);                  // 線の太さを3pxに設定
+  createCanvas(400, 400);           // 400x400のキャンバス
+  background(255);                  // 背景色
+  stroke(255);                      // 線の色は白
+  strokeWeight(3);                  // 線の太さ
 
   // キャンバスの中心座標
   const cx = width / 2; // 中心座標x
   const cy = height / 2; // 中心座標y
 
-  // 最大半径（キャンバスの幅と高さのうち小さい方を選択）
+  // 最大半径（キャンバスの幅と高さのうち小さい方が最大半径となる）
   const maxR = min(width, height);
+
+  //一番大きい黒い円⇒緑と赤の扇がある部分⇒...中心に向かって描画を進める
 
   // 1番目の黒い円を描画
   drawCircle(black, maxR);
@@ -48,7 +50,7 @@ function drawCircle(c, r) {
   const cx = width / 2; // キャンバスの中心座標x
   const cy = height / 2; // キャンバスの中心座標y
   fill(c);  // 塗りつぶし色を設定
-  ellipse(cx, cy, r, r);  // 半径rの円を描画
+  ellipse(cx, cy, r, r);  // 半径rの円を描画する
 }
 
 // 扇形を描く関数
@@ -58,14 +60,14 @@ function drawArcs(c1, c2, r) {
 
   // 20等分して扇形を描画
   for (let i = 0; i < 20; i++) {
-    // 扇形の開始角度と終了角度を計算
+    // 扇形の開始角度と終了角度を計算するためのもの（角度によって色分けする）
     let start = TWO_PI / 20 * i;
     let stop = TWO_PI / 20 * (i + 1);
 
     // 偶数番目のセクションにはc1、奇数番目のセクションにはc2で色を設定
     fill(i % 2 == 0 ? c1 : c2);
 
-    // 扇形を描画（PIEオプションで扇形の内部を塗りつぶす）
+    // 扇形を描画する
     arc(cx, cy, r, r, start, stop, PIE);
   }
 }
