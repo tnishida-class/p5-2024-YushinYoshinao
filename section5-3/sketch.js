@@ -26,7 +26,14 @@ function isLeapYear(y){
 }
 
 function daysInYear(y){
-  // BLANK[1]
+  function getDaysInYear(y) {
+    if ((y % 4 === 0 && y % 100 !== 0) || y % 400 === 0) {
+      return 366;  // うるう年
+    } else {
+      return 365;  // 普通の年
+    }
+  }
+  
 }
 
 function daysInMonth(y, m){
