@@ -58,6 +58,42 @@ function dayOfYear(y, m, d){
 
 function dayOfWeek(y, m, d){
   // BLANK[2]
+  const daysInMonth = [
+    31, // 1月
+    28, // 2月
+    31, // 3月
+    30, // 4月
+    31, // 5月
+    30, // 6月
+    31, // 7月
+    31, // 8月
+    30, // 9月
+    31, // 10月
+    30, // 11月
+    31  // 12月
+  ];
+  
+  // 1970年1月1日からy年m月d日までの日数を計算
+  let totalDays = 0;
+  
+  // 1年目からy-1年目までの日数
+  for (let year = 1970; year < y; year++) {
+    totalDays += isLeapYear(year) ? 366 : 365;
+  }
+  
+  // 1月からm-1月までの日数
+  for (let month = 1; month < m; month++) {
+    totalDays += (month === 2 && isLeapYear(y)) ? 29 : daysInMonth[month - 1];
+  }
+  
+  // m月のd日までの日数
+  totalDays += d - 1;  // 1日からカウントするのでd-1
+  
+  // 基準日1970年1月1日が木曜日(4)で、その日を0とする
+  // その経過日数を7で割った余りを求める
+  let dayOfWeek = (totalDays + 4) % 7;
+  
+  return dayOfWeek;
 }
 
 function dayOfWeekAsString(dow){
