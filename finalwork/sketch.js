@@ -4,7 +4,7 @@ function setup() {
   createCanvas(400, 400);
   background(20); // 黒い背景
 
-  // 雪を生成
+  // 雪を生成（section4-1オブジェクトのやり方）
   for (let i = 0; i < 50; i++) {
     snowflakes.push({
       x: random(width),     // ランダムなx座標
@@ -41,7 +41,7 @@ function draw() {
 
     //右下にシフトを押してもらうための指示を出したい
     if (!keyIsDown(16)) {
-      fill(255); // 白色
+      fill(255); 
       textSize(16);
       textAlign(RIGHT);
       text("シフトを押してミャクミャクと遊ぼう！", width - 10, height - 10); // 右下に表示
